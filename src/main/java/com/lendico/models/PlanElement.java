@@ -31,7 +31,7 @@ public class PlanElement {
         return remainingOutstandingPrincipal;
     }
 
-    private static double calculateAnnuity(double initialOutstandingPrincipal, double interestRate, int numPeriods){
+    private double calculateAnnuity(double initialOutstandingPrincipal, double interestRate, int numPeriods){
         double monthlyRate = interestRate/(NUM_MONTHS * 100);
         double numerator = monthlyRate * initialOutstandingPrincipal;
         double denominator = 1 - Math.pow(1 + monthlyRate, -numPeriods);
@@ -40,17 +40,17 @@ public class PlanElement {
         return (Math.round(payment*100.0)/100.0);
     }
 
-    private static double calculateInterest(double interestRate, double initialOutstandingPrincipal){
+    private double calculateInterest(double interestRate, double initialOutstandingPrincipal){
         double interest = (interestRate / 100 * NUM_DAYS * initialOutstandingPrincipal) / (NUM_DAYS * NUM_MONTHS);
         return (Math.round(interest*100.0)/100.0);
     }
 
-    private static double calculatePrincipal(double annuity, double interest){
+    private double calculatePrincipal(double annuity, double interest){
         double principal = annuity - interest;
         return (Math.round(principal*100.0)/100.0);
     }
 
-    private static double calculateRemainingPrincipal(double initialOutstandingPrincipal, double principal){
+    private double calculateRemainingPrincipal(double initialOutstandingPrincipal, double principal){
         double remainingPrincipal = initialOutstandingPrincipal - principal;
         return (Math.round(remainingPrincipal*100.0)/100.0);
     }
